@@ -1,8 +1,12 @@
 package com.willing.algorithm.sort;
-import java.util.Arrays;
 
-
-public class MergeSort {
+/**
+ * 在归并排序中对小数组采用插入排序
+ * @author Willing
+ *
+ */
+public class MergeWithInsertSort extends MergeSort{
+	private static int K = 4;
 
 	public static <T extends Comparable<T>> void sort(T[] arr)
 	{
@@ -11,12 +15,31 @@ public class MergeSort {
 	
 	protected static <T extends Comparable<T>> void sortSub(T[] arr, int p, int r)
 	{
-		if (p < r)
+		if ((r - p) > K)
 		{
 			int q = (p + r) / 2;
 			sortSub(arr, p, q);
 			sortSub(arr, q + 1, r);
 			merge(arr, p, q, r);
+		}
+		else
+		{
+			for (int i = p; i <= r; ++i)
+			{
+				T key = arr[i];
+				int j;
+				for (j = i - 1; j >= 0; --j)
+				{
+					arr[j + 1] = arr[j];
+					if (key.compareTo(arr[j]) >= 0)
+					{
+						break;
+					}
+				}
+				arr[j + 1] = key;
+			}
+			
+			 
 		}
 	}
 	
@@ -65,14 +88,9 @@ public class MergeSort {
 			arr[k++] = (T) right[j++];
 		}
 		
-	}
+	}	
 	
-	public static void main(String[] args) {
-		
-		Integer[] ints = new Integer[]{2, 1, 3, 5, 4};
-		sort(ints);
-		
-		System.out.println(Arrays.deepToString(ints));
-	}
+ 
+ 
 	
 }

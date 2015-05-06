@@ -1,6 +1,5 @@
 package com.willing.algorithm.sort;
 
-import java.util.Arrays;
 
 /**
  * 插入排序   稳定
@@ -16,7 +15,7 @@ public class InsertSort {
 	 * @param arr 对传递的参数进行原址排序
 	 * @return 返回排序后的参数
 	 */
-	public static <T extends Comparable<T>> T[] sort(T[] arr)
+	public static <T extends Comparable<T>> void sort(T[] arr)
 	{
 		for (int i = 1; i < arr.length; ++i)
 		{
@@ -32,8 +31,7 @@ public class InsertSort {
 			}
 			arr[j + 1] = key;
 		}
-		
-		return arr;
+		 
 	}
 	
 

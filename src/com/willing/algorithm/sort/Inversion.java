@@ -1,27 +1,25 @@
 package com.willing.algorithm.sort;
-import java.util.Arrays;
 
-
-public class MergeSort {
-
-	public static <T extends Comparable<T>> void sort(T[] arr)
+public class Inversion {
+	
+	public static <T extends Comparable<T>> long inversion(T[] arr)
 	{
-		sortSub(arr, 0, arr.length - 1);
+		return inversionSub(arr, 0, arr.length - 1);
 	}
 	
-	protected static <T extends Comparable<T>> void sortSub(T[] arr, int p, int r)
+	protected static <T extends Comparable<T>> long inversionSub(T[] arr, int p, int r)
 	{
 		if (p < r)
 		{
 			int q = (p + r) / 2;
-			sortSub(arr, p, q);
-			sortSub(arr, q + 1, r);
-			merge(arr, p, q, r);
+			
+			return inversionSub(arr, p, q) + inversionSub(arr, q + 1, r) + merge(arr, p, q, r);
 		}
+		return 0;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private static <T extends Comparable<T>> void merge(T[] arr, int p, int q, int r)
+	private static <T extends Comparable<T>> long merge(T[] arr, int p, int q, int r)
 	{
 		int n1 = q - p + 1;
 		int n2 = r - q;
@@ -42,6 +40,7 @@ public class MergeSort {
 		int i = 0;
 		int j = 0;
 		int k = p;
+		int v = 0;
 		while (n1 > 0 && n2 > 0)
 		{
 			if (left[i].compareTo(right[j]) <= 0)
@@ -53,26 +52,25 @@ public class MergeSort {
 			{
 				arr[k++] = (T) right[j++];
 				n2--;
+				v = v + (q - p + 1) - i; 
 			}
 		}
 
 		while (n1-- > 0)
 		{
+//			v = v + (r - q);
 			arr[k++] = (T) left[i++];
+			
 		}
 		while (n2-- > 0)
 		{
 			arr[k++] = (T) right[j++];
 		}
 		
+		return v;
+		
 	}
 	
-	public static void main(String[] args) {
-		
-		Integer[] ints = new Integer[]{2, 1, 3, 5, 4};
-		sort(ints);
-		
-		System.out.println(Arrays.deepToString(ints));
-	}
+ 
 	
 }
