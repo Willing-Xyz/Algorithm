@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.willing.algorithm.other.MaxSubArrayLinear;
-import com.willing.algorithm.other.MaxSubArrayRescursive;
 import com.willing.algorithm.other.Result;
 
 public class TestMaxSubArrayLinear {
