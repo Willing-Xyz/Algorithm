@@ -10,9 +10,9 @@ public class TestInsertSort{
 	@Test
 	public void testInsertSort()
 	{
-		Integer[] ints = new Integer[]{2,1,3}; 
+		Integer[] ints = new Integer[]{3, 6, 2}; 
 		InsertSort.sort(ints);
-		Assert.assertArrayEquals(new Integer[]{1, 2, 3}, ints);
+		Assert.assertArrayEquals(new Integer[]{2, 3, 6}, ints);
 	}
 	
 	/**
