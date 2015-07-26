@@ -1,5 +1,10 @@
 package com.willing.algorithm.sort;
 
+/**
+ * ¼ÆËãÄæĞò¶Ô
+ * @author Willing
+ *
+ */
 public class Inversion {
 	
 	public static <T extends Comparable<T>> long inversion(T[] arr)

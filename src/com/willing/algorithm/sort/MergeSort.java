@@ -1,15 +1,40 @@
 package com.willing.algorithm.sort;
-import java.util.Arrays;
+
+/**
+ * 思路：
+
+	1. 把序列划分为两部分
+	2. 分别对其进行递归排序
+	3. 最后，把这两部分合并到一起
+
+特点：
+
+	* 稳定
+	* 不是原址排序
 
 
+可优化点：
+
+	* 可以选择是否使用哨兵
+	* 对小数组使用插入排序或其他更合适的算法
+
+运行时间：
+
+	* 最坏情况：θ(nlgn)
+	* 平均情況：θ(nlgn)
+	* 最好情況：θ(nlgn) 
+
+ * @author Willing
+ *
+ */
 public class MergeSort {
 
-	public static <T extends Comparable<T>> void sort(T[] arr)
+	public static <T extends Comparable<? super T>> void sort(T[] arr)
 	{
 		sortSub(arr, 0, arr.length - 1);
 	}
 	
-	protected static <T extends Comparable<T>> void sortSub(T[] arr, int p, int r)
+	protected static <T extends Comparable<? super T>> void sortSub(T[] arr, int p, int r)
 	{
 		if (p < r)
 		{
@@ -21,7 +46,7 @@ public class MergeSort {
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private static <T extends Comparable<T>> void merge(T[] arr, int p, int q, int r)
+	private static <T extends Comparable<? super T>> void merge(T[] arr, int p, int q, int r)
 	{
 		int n1 = q - p + 1;
 		int n2 = r - q;
@@ -63,16 +88,6 @@ public class MergeSort {
 		while (n2-- > 0)
 		{
 			arr[k++] = (T) right[j++];
-		}
-		
-	}
-	
-	public static void main(String[] args) {
-		
-		Integer[] ints = new Integer[]{2, 1, 3, 5, 4};
-		sort(ints);
-		
-		System.out.println(Arrays.deepToString(ints));
-	}
-	
+		}	
+	}	
 }

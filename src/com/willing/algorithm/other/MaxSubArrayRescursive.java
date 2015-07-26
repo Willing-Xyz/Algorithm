@@ -1,5 +1,37 @@
 package com.willing.algorithm.other;
 
+/**
+ * 寻找最大子数组（递归实现）
+ * 
+ * 思路：
+
+	1. 把序列划分为两部分
+	2. 最大子数组，要么在左半部，要么在右半部，要么包含中点且在左右两部分
+	3. 递归求左右两部分
+	4. 求包含中点的那一种情况
+	5. 选取三者之中的最大者
+
+特点：
+
+	* 
+
+
+可优化点：
+
+	* 有线性时间的算法
+
+运行时间：
+
+	* 最坏情况：θ(nlgn)
+	* 平均情況：θ(nlgn)
+	* 最好情況：θ(nlgn) 
+
+
+ * 
+ * 
+ * @author Willing
+ *
+ */
 public class MaxSubArrayRescursive {
 
 	public static Result maxSubArray(int[] arr)

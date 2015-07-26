@@ -8,12 +8,12 @@ package com.willing.algorithm.sort;
 public class MergeWithInsertSort extends MergeSort{
 	private static int K = 4;
 
-	public static <T extends Comparable<T>> void sort(T[] arr)
+	public static <T extends Comparable<? super T>> void sort(T[] arr)
 	{
 		sortSub(arr, 0, arr.length - 1);
 	}
 	
-	protected static <T extends Comparable<T>> void sortSub(T[] arr, int p, int r)
+	protected static <T extends Comparable<? super T>> void sortSub(T[] arr, int p, int r)
 	{
 		if ((r - p) > K)
 		{
@@ -44,7 +44,7 @@ public class MergeWithInsertSort extends MergeSort{
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private static <T extends Comparable<T>> void merge(T[] arr, int p, int q, int r)
+	private static <T extends Comparable<? super T>> void merge(T[] arr, int p, int q, int r)
 	{
 		int n1 = q - p + 1;
 		int n2 = r - q;
