@@ -1,7 +1,9 @@
 package com.willing.algorithm.other;
 
+
 /**
  * 返回数组中第i小的对象
+ * 期望时间为线性
  * @author Willing
  *
  */
@@ -35,7 +37,7 @@ public class SelectRecursion {
 		int k = q - p + 1;
 		if (k == i)
 		{
-			return arr[k - 1];
+			return arr[q];
 		}
 		else if (k > i)
 		{
@@ -48,7 +50,7 @@ public class SelectRecursion {
 	}
 	
 	/**
-	 * 不交换，只定位
+	 *  
 	 * @param arr
 	 * @param left
 	 * @param right
@@ -65,17 +67,15 @@ public class SelectRecursion {
 				{
 					++i;
 					
-//					T tmp = arr[i];
-//					arr[i] = arr[j];
-//					arr[j] = tmp;	
+					T tmp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = tmp;	
 				}
 		}	
 		
-//		T tmp = arr[i + 1];
-//		arr[i + 1] = arr[right];
-//		arr[right] = tmp;
-		
-	 
+		T tmp = arr[i + 1];
+		arr[i + 1] = arr[right];
+		arr[right] = tmp;
 		
 		return i + 1;
 	}

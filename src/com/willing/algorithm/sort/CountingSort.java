@@ -1,6 +1,26 @@
 package com.willing.algorithm.sort;
 
+/**
+ * 思路：
 
+	1. 对每一个元素，确定小于它的元素个数
+	2. 然后直接把该元素放到相应的位置上
+
+特点：
+
+	* 稳定
+	* 不是原址排序
+
+
+可优化点：
+
+	* 
+
+运行时间：   θ(n + k) k表示数值的范围
+
+ * @author Willing
+ *
+ */
 public class CountingSort {
 
 	public static int[] sort(int[] arr, int max)

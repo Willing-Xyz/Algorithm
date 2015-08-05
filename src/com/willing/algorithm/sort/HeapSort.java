@@ -1,6 +1,32 @@
 package com.willing.algorithm.sort;
 
+/**
+ * 堆排序
+ * 
+ *  思路：
 
+	1. 构造堆
+	2. 取出堆中的最大元素，并重新构造堆
+	3. 重复第二步，直到完成
+
+特点：
+
+	* 稳定
+
+
+可优化点：
+
+	* 在计算Parent、Left、Right孩子时，可以使用位运算，提高速度
+运行时间：
+
+	* 最坏情况：θ(nlgn)
+	* 平均情況：θ(nlgn)
+	* 最好情況：θ(nlgn) 
+
+ * 
+ * @author Willing
+ *
+ */
 public class HeapSort {
 	
 	public static <T extends Comparable<T>> void sort(T[] arr)

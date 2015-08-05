@@ -2,6 +2,16 @@ package com.willing.algorithm.datastructure;
 
 import java.lang.reflect.Array;
 
+/**
+ * 
+ * 最大优先队列
+ * 
+ * 通过构造最大堆实现
+ * 
+ * @author Willing
+ *
+ * @param <T>
+ */
 public class MaxPriorityQueue<T extends Comparable<T>> {
 	
 	T[] queue;

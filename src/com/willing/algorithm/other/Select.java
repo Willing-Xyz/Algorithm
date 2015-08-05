@@ -1,8 +1,9 @@
 package com.willing.algorithm.other;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
-/** 待实现
+/** 
  * 最坏情况下，时间复杂度为线性时间
  * @author Willing
  *
@@ -28,16 +29,25 @@ public class Select {
 			return arr[p];
 		}
 		
-		int m = mid(arr, p, r);
-		T tmp = arr[m];
-		arr[m] = arr[r];
-		arr[r] = tmp;
+		T tmp = mid(arr, p, r);
+		for (int x = 0; x < arr.length; ++x)
+		{
+			if (tmp.equals(arr[x]))
+			{
+				T t = arr[x];
+				arr[x] = arr[r];
+				arr[r] = t;
+				
+				break;
+			}
+		}
+		
 		int q = paration(arr, p, r);
 		
 		int k = q - p + 1;
 		if (k == i)
 		{
-			return arr[k - 1];
+			return arr[q];
 		}
 		else if (k > i)
 		{
@@ -50,14 +60,16 @@ public class Select {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private static <T extends Comparable<T>> int mid(T[] arr, int p, int r)
+	private static <T extends Comparable<T>> T mid(T[] arr, int p, int r)
 	{
 		if (r == p)
 		{
-			return p;
+			return arr[p];
 		}
 		int len = r - p + 1;
 		int n = len / 5 + (len % 5 == 0 ? 0 : 1);
+		
+		arr = Arrays.copyOf(arr, arr.length);
 		
 		// 应该只定义一个
 		T[] tmp = (T[])Array.newInstance(arr[0].getClass(), n);
@@ -88,15 +100,15 @@ public class Select {
 				{
 					++i;
 					
-//					T tmp = arr[i];
-//					arr[i] = arr[j];
-//					arr[j] = tmp;	
+					T tmp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = tmp;	
 				}
 		}	
 		
-//		T tmp = arr[i + 1];
-//		arr[i + 1] = arr[right];
-//		arr[right] = tmp;
+		T tmp = arr[i + 1];
+		arr[i + 1] = arr[right];
+		arr[right] = tmp;
 		
 	 
 		

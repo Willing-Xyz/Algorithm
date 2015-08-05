@@ -1,36 +1,56 @@
 package com.willing.algorithm.datastructure;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
-public class BinaryTree<T extends Comparable<T>> {
+/**
+ * 二叉搜索树
+ * 元素相同时，放在同一个节点的链表里
+ * 
+ * @author Willing
+ *
+ * @param <T>
+ */
+public class BinaryTree<T extends Comparable<? super T>> {
 	
-	Node head;
+	private Node mHead;
 
-	class Node 
+	public class Node 
 	{
-		LinkedList<T> obj;
-		Node left;
-		Node right;
-		Node p;
+		private LinkedList<T> obj;
+		
+		private Node left;
+		private Node right;
+		private Node p;
  
 		public Node(T o, Node l, Node r, Node p)
 		{
-			obj = new LinkedList<>();
+			obj = new LinkedList<T>();
 			obj.add(o);
 			left = l;
 			right = r;
 			this.p = p;
 		}
+		
+		public T getObj()
+		{
+			return obj.getFirst();
+		}
 	}
 	
 	public BinaryTree()
 	{
-		head = null;
+		mHead = null;
+	}
+	
+	public boolean isEmpty()
+	{
+		return mHead == null;
 	}
 	
 	public Node search(T val)
 	{
-		Node node = head;
+		Node node = mHead;
 		while (node != null)
 		{
 			int result = node.obj.getFirst().compareTo(val);
@@ -52,12 +72,12 @@ public class BinaryTree<T extends Comparable<T>> {
 	
 	public Node min()
 	{
-		return min(head);
+		return min(mHead);
 	}
 	
 	public Node min(Node val)
 	{
-		Node node = head;
+		Node node = mHead;
 		
 		if (node != null)
 		{
@@ -72,7 +92,7 @@ public class BinaryTree<T extends Comparable<T>> {
 	
 	public Node max()
 	{
-		return max(head);
+		return max(mHead);
 	}
 	
 	public Node max(Node val)
@@ -129,47 +149,47 @@ public class BinaryTree<T extends Comparable<T>> {
 	
 	public void insert(T x)
 	{
-		if (head == null)
+		if (mHead == null)
 		{
-			head = new Node(x, null, null, null);
+			mHead = new Node(x, null, null, mHead);
+			
+			return;
 		}
-		else
+		Node node = mHead;
+		Node p = node.p;
+		
+		
+		
+		int result = 0;
+		while (node != null)
 		{
-			Node node = head;
-			Node p = node.p;
-			
-			Node tmp = new Node(x, null, null, p);
-			
-			int result = 0;
-			while (node != null)
+			p = node;
+			result = node.obj.getFirst().compareTo(x);
+			if (result == 0)
 			{
-				p = node;
-				result = node.obj.getFirst().compareTo(x);
-				if (result == 0)
-				{
-					node.obj.add(x);
-					
-					return;
-				}
-				else if (result > 0)
-				{
-					node = node.left;
-				}
-				else
-				{
-					node = node.right;
-				}
+				node.obj.add(x);
+				
+				return;
 			}
-			if (result > 0)
+			else if (result > 0)
 			{
-				p.left = tmp;
+				node = node.left;
 			}
 			else
 			{
-				p.right = tmp;
+				node = node.right;
 			}
-			
 		}
+		Node tmp = new Node(x, null, null, p);
+		if (result > 0)
+		{
+			p.left = tmp;
+		}
+		else
+		{
+			p.right = tmp;
+		}
+			
 	}
 	
 	public void delete(Node val)
@@ -186,24 +206,30 @@ public class BinaryTree<T extends Comparable<T>> {
 		{
 			Node node = min(val.right);
 			
-			if (val.right == node)
+			if (val.right != node)
 			{
-				
+				replace(node, node.right);
+				node.right = val.right;
+				node.right.p = node;
 			}
-			node.p.right = null;
-			node.right = val.right;
+			replace(val, node);
 			node.left = val.left;
-			node.p = val.p;
+			node.left.p = node;
 		}
 	}
 	
+	/**
+	 * 替换子树
+	 * @param u 被替换
+	 * @param v 替换
+	 */
 	private void replace(Node u, Node v)
 	{
 		if (u.p == null)
 		{
-			head = v;
+			mHead = v;
 		}
-		if (u.p.left == v)
+		if (u.p.left == u)
 		{
 			u.p.left = v;
 		}
@@ -214,6 +240,31 @@ public class BinaryTree<T extends Comparable<T>> {
 		if (v != null)
 		{
 			v.p = u.p;
+		}
+	}
+	
+	/**
+	 * 中序遍历
+	 */
+	public void inorder()
+	{
+		subInorder(mHead);
+	}
+	
+	private void subInorder(Node x)
+	{
+		if (x !=  null)
+		{
+			subInorder(x.left);
+			
+			LinkedList<T> list = x.obj;
+			for (Iterator<T> ite = list.iterator(); ite.hasNext(); )
+			{
+				T t = ite.next();
+				System.out.print(t.toString() + " , ");
+			}
+			
+			subInorder(x.right);
 		}
 	}
 }

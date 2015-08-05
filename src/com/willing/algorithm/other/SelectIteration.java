@@ -25,7 +25,7 @@ public class SelectIteration {
 			
 			if (k == i)
 			{
-				return arr[k - 1];
+				return arr[q];
 			}
 			else if (k < i)
 			{
@@ -43,7 +43,7 @@ public class SelectIteration {
 	}
 	
 	/**
-	 * 不交换，只定位
+	 *
 	 * @param arr
 	 * @param left
 	 * @param right
@@ -60,15 +60,15 @@ public class SelectIteration {
 				{
 					++i;
 					
-//					T tmp = arr[i];
-//					arr[i] = arr[j];
-//					arr[j] = tmp;	
+					T tmp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = tmp;	
 				}
 		}	
 		
-//		T tmp = arr[i + 1];
-//		arr[i + 1] = arr[right];
-//		arr[right] = tmp;
+		T tmp = arr[i + 1];
+		arr[i + 1] = arr[right];
+		arr[right] = tmp;
 		
 	 
 		
