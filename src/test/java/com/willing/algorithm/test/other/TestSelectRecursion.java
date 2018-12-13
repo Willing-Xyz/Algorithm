@@ -1,4 +1,4 @@
-package test.com.willing.algorithm.other;
+package com.willing.algorithm.test.other;
  
 
 import org.junit.Assert;

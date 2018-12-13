@@ -1,4 +1,4 @@
-package test.com.willing.algorithm.datastructure;
+package com.willing.algorithm.test.datastructure;
 
 
 import org.junit.Assert;

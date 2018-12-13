@@ -1,4 +1,4 @@
-package test.com.willing.algorithm.search;
+package com.willing.algorithm.test.search;
  
 
 import org.junit.Assert;

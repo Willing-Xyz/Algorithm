@@ -1,4 +1,4 @@
-package test.com.willing.algorithm.sort;
+package com.willing.algorithm.test.sort;
 
 import org.junit.Assert;
 import org.junit.Test;
